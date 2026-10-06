@@ -1,0 +1,6 @@
+{
+  "name": "Flora Yeung — Dual-Reading Interactive Portfolio",
+  "description": "An interactive personal portfolio featuring two ways of reading: SYSTEM (a structured digital archive of engineering, data, and AI systems) and LIFE (an editorial personal archive of photography, places, words, and creative work).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

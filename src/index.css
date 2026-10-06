@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* SYSTEM Mode Design Tokens */
+    --system-bg: #F5F5F2;
+    --system-surface: #EBEBE6;
+    --system-text: #111111;
+    --system-muted: #747474;
+    --system-line: rgba(0, 0, 0, 0.12);
+    --system-accent: #1D4ED8;
+
+    --system-spacing-xs: 0.5rem;
+    --system-spacing-sm: 1rem;
+    --system-spacing-md: 2rem;
+    --system-spacing-lg: 4rem;
+
+    --system-motion-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    --system-motion-medium: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    --system-motion-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* LIFE Mode Design Tokens */
+    --life-bg: #0B0A09;
+    --life-surface: #141210;
+    --life-text: #F2EFE9;
+    --life-muted: #9E9689;
+    --life-line: rgba(242, 239, 233, 0.12);
+    --life-accent: #D97736;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .font-sans-system {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .font-mono-system {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .font-serif-life {
+    font-family: 'Instrument Serif', Georgia, serif;
+  }
+}
+
+/* Subtle film grain overlay for LIFE and Entry */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
