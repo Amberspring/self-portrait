@@ -13,6 +13,7 @@ import {
 import { useLanguage } from '../../context/LanguageContext';
 import { PhotoEntryData } from '../../types/portfolio';
 import { ResilientImage } from '../shared/ResilientImage';
+import { MosbyArchiveShowcase } from '../shared/MosbyArchiveShowcase';
 import { LifeDisturbanceField } from './LifeDisturbanceField';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 
@@ -594,22 +595,56 @@ export const LifeView: React.FC<LifeViewProps> = ({
 
         {/* 06 / PROJECTS — Personal Origins (Why did I make it?) */}
         <section id="life-projects" className="py-24 border-b border-white/10">
-          <div className="flex flex-wrap items-baseline justify-between gap-4 mb-12">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
             <div>
               <span className="font-mono-system text-xs tracking-[0.2em] text-[#9E9689] block">
-                06 / PROJECTS · PERSONAL ORIGINS
+                06 / CREATIVE & VIBE CODING · 个人创作初衷
               </span>
               <h2 className="mt-2 font-serif-life italic text-3xl sm:text-5xl text-[#F2EFE9]">
                 {isZh ? '我为什么做这些项目？ / Why did I make it?' : 'Why did I make it?'}
               </h2>
             </div>
             <span className="font-mono-system text-xs text-[#9E9689]">
-              SHARED PROJECTS · PERSONAL STORY
+              {isZh
+                ? 'MOSBY’S FILES 实体文件夹风格 · 支持直接在线编辑描述'
+                : "MOSBY'S FILES FOLDER ARCHIVE · INLINE EDITABLE"}
+            </span>
+          </div>
+
+          {/* Part A: Mosby's Files Tactile Folder Archive for Vibe Coding Projects */}
+          <div className="mb-16">
+            <MosbyArchiveShowcase
+              projects={lifeProjects.filter((p) =>
+                [
+                  'ai-music-record-store',
+                  'finger-touch-piano',
+                  'medication-companion',
+                ].includes(p.slug)
+              )}
+              mode="life"
+              isZh={isZh}
+              onOpenProject={onOpenProject}
+            />
+          </div>
+
+          {/* Part B: Other Research & Data Projects Personal Stories */}
+          <div className="mb-8 pt-6 border-t border-white/10 flex items-baseline justify-between">
+            <span className="font-mono-system text-xs tracking-[0.18em] text-[#9E9689] uppercase">
+              {isZh ? '研究项目背后的个人动机 // RESEARCH ORIGINS' : 'RESEARCH ORIGINS'}
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {lifeProjects.map((proj) => (
+            {lifeProjects
+              .filter(
+                (p) =>
+                  ![
+                    'ai-music-record-store',
+                    'finger-touch-piano',
+                    'medication-companion',
+                  ].includes(p.slug)
+              )
+              .map((proj) => (
               <div
                 key={proj.id}
                 className="bg-[#141210] border border-white/10 p-6 flex flex-col justify-between space-y-6"

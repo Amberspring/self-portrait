@@ -13,6 +13,7 @@ import {
 import { useLanguage } from '../../context/LanguageContext';
 import { VisualWorkData, MediaWorkData } from '../../types/portfolio';
 import { ResilientImage } from '../shared/ResilientImage';
+import { MosbyArchiveShowcase } from '../shared/MosbyArchiveShowcase';
 import { ArrowUpRight, Menu, X, ChevronRight } from 'lucide-react';
 
 interface SystemViewProps {
@@ -551,19 +552,56 @@ export const SystemView: React.FC<SystemViewProps> = ({
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.45 }}
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-4 mb-12">
+              <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
                 <h2 className="font-mono-system text-xs tracking-[0.2em] text-[#747474]">
-                  {isZh ? '03 / PROJECTS · 量化、数据与 AI 项目' : '03 / PROJECTS'}
+                  {isZh ? '03 / PROJECTS · 独立产品与量化研究项目' : '03 / PROJECTS'}
                 </h2>
                 <span className="font-mono-system text-xs text-[#747474]">
                   {isZh
-                    ? '点击项目查看 10 节完整工程与计量 Case Study'
-                    : 'CLICK ANY PROJECT FOR 10-SECTION CASE STUDY'}
+                    ? '点击文件夹标签切换 Vibe Coding 项目 · 支持在线编辑描述'
+                    : 'CLICK FOLDER TABS FOR VIBE CODING DOSSIERS · INLINE EDITABLE'}
+                </span>
+              </div>
+
+              {/* Part A: Mosby's Files Style Tactile Folder Archive for Vibe Coding Projects */}
+              <div className="mb-20">
+                <MosbyArchiveShowcase
+                  projects={projects.filter((p) =>
+                    [
+                      'ai-music-record-store',
+                      'finger-touch-piano',
+                      'medication-companion',
+                    ].includes(p.slug)
+                  )}
+                  mode="system"
+                  isZh={isZh}
+                  onOpenProject={onOpenProject}
+                />
+              </div>
+
+              {/* Part B: Quantitative, Econometric & Data Science Research Projects */}
+              <div className="mb-10 pt-6 border-t border-black/15 flex items-baseline justify-between">
+                <h3 className="font-mono-system text-xs tracking-[0.18em] text-[#747474] uppercase">
+                  {isZh
+                    ? 'QUANTITATIVE, NLP & DATA SCIENCE ARCHIVE // 量化、NLP 与数据科学实证项目'
+                    : 'QUANTITATIVE, NLP & DATA SCIENCE ARCHIVE'}
+                </h3>
+                <span className="font-mono-system text-[11px] text-[#747474]">
+                  05 RESEARCH & ENGINEERING FILES
                 </span>
               </div>
 
               <div className="space-y-20">
-                {projects.map((project) => (
+                {projects
+                  .filter(
+                    (p) =>
+                      ![
+                        'ai-music-record-store',
+                        'finger-touch-piano',
+                        'medication-companion',
+                      ].includes(p.slug)
+                  )
+                  .map((project) => (
                   <article
                     key={project.id}
                     className="group border-t border-black/15 pt-10 grid grid-cols-1 lg:grid-cols-12 gap-8"
